@@ -9,9 +9,12 @@ def get_depute_mail
   
   uls.each do |ul|
     name = ul.xpath('.//h2[@class="titre_normal"]').text.strip
+    first_name, last_name = name.split(' ', 2)
     email = ul.xpath('.//a[contains(@href, "mailto") and contains(@href, "assemblee")]/text()').text.strip
     unless email == ""
-      hash = { name => email }
+      hash = { first_name: first_name,
+      last_name: last_name, 
+      email: email }
       all_together << hash
     end
   end
